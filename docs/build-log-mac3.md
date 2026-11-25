@@ -30,3 +30,5 @@
 - Ping Mac 3 → Mac 1 (`10.7.27.215`): 4/4 replies, so campus Wi-Fi does not isolate clients.
   Evidence: `evidence/phase1/A-lan/02-ping-mac3-to-mac1.txt`.
 - Mac 1's dnsmasq answers on TCP 53. Backend B (:3002) was not up yet at this point.
+- Both backends checked from Mac 3 over the LAN: A (10.7.27.76:3001) and B (10.7.27.215:3002) return 200 with the right X-Backend, the same ETag and identical /api/info bodies, and both return 304. Mac 1 confirmed the same from its side.
+  Evidence: `evidence/phase1/C-backends/03-both-backends-on-lan.txt`.
