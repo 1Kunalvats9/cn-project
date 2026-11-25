@@ -1,0 +1,37 @@
+Wed Nov 25 19:32:15 IST 2026
+$ curl -sI http://10.7.27.215:3002/api/info
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.12.4
+Date: Wed, 25 Nov 2026 14:02:15 GMT
+X-Backend: B
+Cache-Control: public, max-age=60
+ETag: "7915c1338b1a8a11"
+Content-Type: application/json
+Content-Length: 210
+
+
+$ curl -sI --connect-timeout 5 http://10.7.27.76:3001/api/info
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 14:02:15 GMT
+X-Backend: A
+Cache-Control: public, max-age=60
+ETag: "7915c1338b1a8a11"
+Content-Type: application/json
+Content-Length: 210
+
+
+ETag A: "7915c1338b1a8a11"
+ETag B: "7915c1338b1a8a11"
+ETAG MATCH
+$ diff <(curl -s B/api/info) <(curl -s A/api/info)
+BODIES IDENTICAL
+
+$ curl -si -H "If-None-Match: <A etag>" http://10.7.27.215:3002/api/info   # B honours A's ETag
+HTTP/1.0 304 Not Modified
+Server: CNBackend/2.0 Python/3.12.4
+Date: Wed, 25 Nov 2026 14:02:15 GMT
+X-Backend: B
+Cache-Control: public, max-age=60
+ETag: "7915c1338b1a8a11"
+

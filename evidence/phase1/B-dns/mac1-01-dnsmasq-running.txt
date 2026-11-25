@@ -1,0 +1,4 @@
+Wed Nov 25 19:51:51 IST 2026
+$ pgrep -lf dnsmasq
+79143 /opt/homebrew/opt/dnsmasq/sbin/dnsmasq --keep-in-foreground -C /opt/homebrew/etc/dnsmasq.conf -7 /opt/homebrew/etc/dnsmasq.d,*.conf
+

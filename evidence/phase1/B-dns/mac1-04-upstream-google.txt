@@ -1,0 +1,29 @@
+Wed Nov 25 19:51:51 IST 2026
+$ dig @10.7.27.215 google.com
+
+; <<>> DiG 9.10.6 <<>> @10.7.27.215 google.com
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 34338
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;google.com.			IN	A
+
+;; ANSWER SECTION:
+google.com.		72	IN	A	192.178.158.113
+google.com.		72	IN	A	192.178.158.139
+google.com.		72	IN	A	192.178.158.138
+google.com.		72	IN	A	192.178.158.101
+google.com.		72	IN	A	192.178.158.100
+google.com.		72	IN	A	192.178.158.102
+
+;; Query time: 8 msec
+;; SERVER: 10.7.27.215#53(10.7.27.215)
+;; WHEN: Wed Nov 25 19:51:51 IST 2026
+;; MSG SIZE  rcvd: 135
+
+

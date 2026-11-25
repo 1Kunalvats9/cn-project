@@ -1,0 +1,18 @@
+Wed Nov 25 19:32:14 IST 2026
+$ curl -si http://10.7.27.215:3002/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.12.4
+Date: Wed, 25 Nov 2026 14:02:14 GMT
+X-Backend: B
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+{
+  "status": "ok",
+  "backend": "B",
+  "host": "Tanishks-MacBook-Pro.local",
+  "port": 3002,
+  "time": "2026-11-25T14:02:14+00:00"
+}
+

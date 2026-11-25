@@ -1,0 +1,24 @@
+Wed Nov 25 19:51:51 IST 2026
+$ dig @10.7.27.215 api.team1.test
+
+; <<>> DiG 9.10.6 <<>> @10.7.27.215 api.team1.test
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 7977
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;api.team1.test.			IN	A
+
+;; ANSWER SECTION:
+api.team1.test.		30	IN	A	10.7.8.240
+
+;; Query time: 0 msec
+;; SERVER: 10.7.27.215#53(10.7.27.215)
+;; WHEN: Wed Nov 25 19:51:51 IST 2026
+;; MSG SIZE  rcvd: 59
+
+

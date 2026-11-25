@@ -1,0 +1,11 @@
+$ ping -c 4 10.7.27.76   # Mac 1 -> Mac 3
+Wed Nov 25 19:22:59 IST 2026
+PING 10.7.27.76 (10.7.27.76): 56 data bytes
+64 bytes from 10.7.27.76: icmp_seq=0 ttl=64 time=78.147 ms
+64 bytes from 10.7.27.76: icmp_seq=1 ttl=64 time=12.231 ms
+64 bytes from 10.7.27.76: icmp_seq=2 ttl=64 time=23.091 ms
+64 bytes from 10.7.27.76: icmp_seq=3 ttl=64 time=33.648 ms
+
+--- 10.7.27.76 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 12.231/36.779/78.147/25.055 ms

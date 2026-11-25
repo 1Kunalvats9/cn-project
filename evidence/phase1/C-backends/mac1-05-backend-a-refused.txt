@@ -1,0 +1,16 @@
+# Backend A unreachable from Mac 1 — layer-by-layer check
+Wed Nov 25 19:24:12 IST 2026
+$ ping -c 2 10.7.27.76
+PING 10.7.27.76 (10.7.27.76): 56 data bytes
+64 bytes from 10.7.27.76: icmp_seq=0 ttl=64 time=37.367 ms
+64 bytes from 10.7.27.76: icmp_seq=1 ttl=64 time=33.802 ms
+
+--- 10.7.27.76 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 33.802/35.584/37.367/1.782 ms
+$ arp -n 10.7.27.76
+? (10.7.27.76) at b6:d8:ae:24:f5:f1 on en0 ifscope [ethernet]
+$ nc -vz -G 3 10.7.27.76 3001
+nc: connectx to 10.7.27.76 port 3001 (tcp) failed: Connection refused
+
+Result: L3 OK (ping + ARP MAC = Mac 3), L4 FAIL (RST / Connection refused) => Backend A process not listening on :3001.
