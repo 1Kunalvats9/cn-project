@@ -1,0 +1,121 @@
+# Task C — local backend tests on Mac 3 (2026-11-25 19:12)
+# A and B both started on this Mac only for testing; B really runs on Mac 1.
+
+$ curl -si http://127.0.0.1:3001/
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 107
+
+{
+  "service": "Private Network Service Platform",
+  "backend": "A",
+  "message": "Hello from Backend A"
+}
+
+$ curl -si http://127.0.0.1:3001/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+{
+  "status": "ok",
+  "backend": "A",
+  "host": "Kunals-MacBook-Pro-4.local",
+  "port": 3001,
+  "time": "2026-11-25T13:42:36+00:00"
+}
+
+$ curl -si http://127.0.0.1:3002/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: B
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+{
+  "status": "ok",
+  "backend": "B",
+  "host": "Kunals-MacBook-Pro-4.local",
+  "port": 3002,
+  "time": "2026-11-25T13:42:36+00:00"
+}
+
+$ curl -si http://127.0.0.1:3001/api/info
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: public, max-age=60
+ETag: "7915c1338b1a8a11"
+Content-Type: application/json
+Content-Length: 210
+
+{
+  "service": "Private Network Service Platform",
+  "version": "1.0",
+  "endpoints": [
+    "/",
+    "/api/status",
+    "/api/info"
+  ],
+  "note": "This response is cacheable and identical on every backend."
+}
+
+$ curl -si -H 'If-None-Match: "7915c1338b1a8a11"' http://127.0.0.1:3001/api/info
+HTTP/1.0 304 Not Modified
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: public, max-age=60
+ETag: "7915c1338b1a8a11"
+
+
+# ETag check — same ETag from B means 304 works under round robin:
+
+$ curl -si -H 'If-None-Match: "7915c1338b1a8a11"' http://127.0.0.1:3002/api/info | head -1
+HTTP/1.0 304 Not Modified
+
+$ curl -sI http://127.0.0.1:3001/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+
+$ curl -si http://127.0.0.1:3001/nope
+HTTP/1.0 404 Not Found
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:42:36 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 64
+
+{
+  "error": "not found",
+  "path": "/nope",
+  "backend": "A"
+}
+
+# server log
+Backend A listening on 0.0.0.0:3001  (/api/info ETag "7915c1338b1a8a11")
+[19:12:36] backend=A client=127.0.0.1 "GET / HTTP/1.1" 200 -
+[19:12:36] backend=A client=127.0.0.1 "GET /api/status HTTP/1.1" 200 -
+[19:12:36] backend=A client=127.0.0.1 "GET /api/info HTTP/1.1" 200 -
+[19:12:36] backend=A client=127.0.0.1 "HEAD /api/info HTTP/1.1" 200 -
+[19:12:36] backend=A client=127.0.0.1 "GET /api/info HTTP/1.1" 304 -
+[19:12:36] backend=A client=127.0.0.1 "HEAD /api/status HTTP/1.1" 200 -
+[19:12:36] backend=A client=127.0.0.1 "GET /nope HTTP/1.1" 404 -

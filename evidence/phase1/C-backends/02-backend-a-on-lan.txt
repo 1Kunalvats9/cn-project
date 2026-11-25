@@ -1,0 +1,22 @@
+# Backend A running for real on Mac 3 (2026-11-25 19:13)
+
+$ lsof -nP -iTCP:3001 -sTCP:LISTEN
+COMMAND   PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  33152 kunalvats    3u  IPv4 0xaabff84bdda942fe      0t0  TCP *:3001 (LISTEN)
+
+$ curl -si http://10.7.27.76:3001/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 13:43:18 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+{
+  "status": "ok",
+  "backend": "A",
+  "host": "Kunals-MacBook-Pro-4.local",
+  "port": 3001,
+  "time": "2026-11-25T13:43:18+00:00"
+}

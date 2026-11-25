@@ -1,0 +1,7 @@
+# private keys and CA serial files must never be committed
+*.key
+*.srl
+# macOS / Python clutter
+.DS_Store
+__pycache__/
+*.pyc
