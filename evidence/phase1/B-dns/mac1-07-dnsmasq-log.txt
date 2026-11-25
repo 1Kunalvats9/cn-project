@@ -1,0 +1,6 @@
+# sudo tail -n 40 /tmp/dnsmasq.log on Mac 1 (2026-11-25 19:58), filtered to team1.test lines only.
+# Unrelated lookups by this Mac were removed for privacy. Upstream forwarding is shown in mac1-04-upstream-google.txt.
+Nov 25 19:58:33 dnsmasq[79143]: query[AAAA] app.team1.test from 127.0.0.1
+Nov 25 19:58:33 dnsmasq[79143]: config app.team1.test is NODATA-IPv6
+Nov 25 19:58:33 dnsmasq[79143]: query[A] app.team1.test from 127.0.0.1
+Nov 25 19:58:33 dnsmasq[79143]: config app.team1.test is 10.7.8.240

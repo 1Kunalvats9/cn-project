@@ -1,0 +1,18 @@
+Wed Nov 25 19:32:15 IST 2026
+$ curl -si --connect-timeout 5 http://10.7.27.76:3001/api/status
+HTTP/1.0 200 OK
+Server: CNBackend/2.0 Python/3.14.3
+Date: Wed, 25 Nov 2026 14:02:15 GMT
+X-Backend: A
+Cache-Control: no-store
+Content-Type: application/json
+Content-Length: 134
+
+{
+  "status": "ok",
+  "backend": "A",
+  "host": "Kunals-MacBook-Pro-4.local",
+  "port": 3001,
+  "time": "2026-11-25T14:02:15+00:00"
+}
+

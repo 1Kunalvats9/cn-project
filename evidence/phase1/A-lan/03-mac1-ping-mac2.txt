@@ -1,0 +1,11 @@
+$ ping -c 4 10.7.8.240   # Mac 1 -> Mac 2
+Wed Nov 25 19:48:55 IST 2026
+PING 10.7.8.240 (10.7.8.240): 56 data bytes
+64 bytes from 10.7.8.240: icmp_seq=0 ttl=64 time=6.319 ms
+64 bytes from 10.7.8.240: icmp_seq=1 ttl=64 time=10.403 ms
+64 bytes from 10.7.8.240: icmp_seq=2 ttl=64 time=7.814 ms
+64 bytes from 10.7.8.240: icmp_seq=3 ttl=64 time=11.739 ms
+
+--- 10.7.8.240 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 6.319/9.069/11.739/2.124 ms

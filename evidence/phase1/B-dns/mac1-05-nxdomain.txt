@@ -1,0 +1,21 @@
+Wed Nov 25 19:51:51 IST 2026
+$ dig @10.7.27.215 nothing.team1.test
+
+; <<>> DiG 9.10.6 <<>> @10.7.27.215 nothing.team1.test
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 18543
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;nothing.team1.test.		IN	A
+
+;; Query time: 0 msec
+;; SERVER: 10.7.27.215#53(10.7.27.215)
+;; WHEN: Wed Nov 25 19:51:51 IST 2026
+;; MSG SIZE  rcvd: 47
+
+
