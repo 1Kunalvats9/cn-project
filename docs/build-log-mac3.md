@@ -32,3 +32,5 @@
 - Mac 1's dnsmasq answers on TCP 53. Backend B (:3002) was not up yet at this point.
 - Both backends checked from Mac 3 over the LAN: A (10.7.27.76:3001) and B (10.7.27.215:3002) return 200 with the right X-Backend, the same ETag and identical /api/info bodies, and both return 304. Mac 1 confirmed the same from its side.
   Evidence: `evidence/phase1/C-backends/03-both-backends-on-lan.txt`.
+- Ping Mac 3 → Mac 2 (`10.7.8.240`): 4/4 replies. Evidence: `evidence/phase1/A-lan/03-ping-mac3-to-mac2.txt`.
+- Mac 2's agent got "No route to host" connecting to both backends. But Mac 1 has reached Backend A (4 requests from 10.7.27.215 in the log), Mac 3 can ping Mac 2, and no request from 10.7.8.240 ever reached A. So the block is on Mac 2's side (agent sandbox or macOS Local Network permission), not the network or Mac 3.
