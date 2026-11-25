@@ -6,7 +6,12 @@
   macOS firewall off and stealth mode off, so ping will get replies.
   Evidence: `evidence/phase1/A-lan/01-mac3-inventory.txt`.
 - **IP changed since October** (`10.7.5.129` → `10.7.27.76`): DHCP gave a new address.
-  To do: set Private Wi-Fi address to **Fixed**, and ask for a DHCP reservation or use a manual IP before the demo.
+  - Checked System Settings → Wi-Fi → Rishihood_Learner → Details: Private Wi-Fi address is already **Fixed** (`b6:d8:ae:24:f5:f1`).
+    So the change came from the DHCP lease, not from a rotating MAC.
+  - DHCP lease: 18 h (`lease_time 0xfd20`), from DHCP server `10.1.0.2`. While the Mac stays connected, the lease renews and the IP normally stays the same.
+  - No manual IP: this is a large campus network (/19, 2,500+ neighbours in ARP), so a hand-picked IP could clash with someone else's. Students can't get a DHCP reservation here.
+  - Plan: on build or demo day, run `ipconfig getifaddr en0` on all 3 Macs first. If an IP moved, update the dnsmasq records (Mac 1) and the nginx upstream (Mac 2).
+    Fallback if campus Wi-Fi moves IPs or blocks Mac-to-Mac traffic: a phone hotspot or our own router, where IPs stay stable.
 - **Wrote `backend/backend.py`** (standard library only, `python3 backend.py <ID> <PORT>`):
   - `ThreadingHTTPServer` on `0.0.0.0`; skips the startup reverse-DNS lookup so it never hangs when DNS changes.
   - `/` and `/api/status`: JSON, `Cache-Control: no-store`.
