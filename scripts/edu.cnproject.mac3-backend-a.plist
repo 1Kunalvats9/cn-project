@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Runs Backend A on Mac 3 as a launchd user agent, so it keeps running
+     after Terminal windows close. Managed by scripts/backend-a.sh -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>edu.cnproject.mac3-backend-a</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/python3</string>
+    <string>-u</string>
+    <string>/Users/kunalvats/cn-project/backend/backend.py</string>
+    <string>A</string>
+    <string>3001</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/kunalvats/cn-project/backend</string>
+  <key>StandardOutPath</key>
+  <string>/Users/kunalvats/cn-project/backend/backend-a.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/kunalvats/cn-project/backend/backend-a.log</string>
+  <key>RunAtLoad</key>
+  <true/>
+  <!-- restart automatically if it crashes; "backend-a.sh stop" still stops it -->
+  <key>KeepAlive</key>
+  <true/>
+</dict>
+</plist>

@@ -22,3 +22,11 @@
 - **Backend A running** on `*:3001` and answering on the LAN IP.
   Evidence: `evidence/phase1/C-backends/02-backend-a-on-lan.txt`.
 - The old `backend-a/` and `backend-b/` folders (October version, both backends on Mac 3) are kept but superseded by `backend/`.
+
+## 2026-11-25, later
+
+- Backend A died when its Terminal tab closed. It now runs as a launchd user agent (`scripts/backend-a.sh start|stop|status|log`), so it survives closed terminals and restarts after a crash.
+  For the "one backend down" demo, use `scripts/backend-a.sh stop`, then `start`.
+- Ping Mac 3 → Mac 1 (`10.7.27.215`): 4/4 replies, so campus Wi-Fi does not isolate clients.
+  Evidence: `evidence/phase1/A-lan/02-ping-mac3-to-mac1.txt`.
+- Mac 1's dnsmasq answers on TCP 53. Backend B (:3002) was not up yet at this point.
